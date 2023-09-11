@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "d496249f-c276-4724-b588-d858602eb557",
+		"name": "squadio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29487098",
+		"_collection_link": "https://glamcode.postman.co/workspace/glamcode-api~fe361af6-09fd-435f-8242-c5c2ca5d085d/collection/29487098-d496249f-c276-4724-b588-d858602eb557?action=share&source=collection_link&creator=29487098"
+	},
+	"item": [
+		{
+			"name": "index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/items"
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/items/{item_id}"
+			},
+			"response": []
+		},
+		{
+			"name": "store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"item-test\", // \"required|string|unique:items\",\n    \"price\": 77.7, // \"required|numeric\",\n    \"seller\": \"islam\" // \"required|string\",\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/items"
+			},
+			"response": []
+		},
+		{
+			"name": "statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{url}}/api/statistics/items"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
