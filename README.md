@@ -1,7 +1,7 @@
 ## Installation Steps
 
 1. Clone the repository.
-2. Create a MySQL database with your favorite name ex:"laravel".
+2. Create a database with your favorite name.
 3. Run the following commands:
 
 ```
@@ -16,7 +16,7 @@ cat .env.example > .env
 php artisan key:generate
 ```
 
-4. Customize the vars in the `.env` file with your database info.
+4. Customize the environment vars in the `.env` file or your system with your database info.
 5. Run migration and seed:
 
 ```
