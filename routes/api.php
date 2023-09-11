@@ -10,13 +10,16 @@ use App\Http\Controllers\Api\ItemController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::apiResource('items', ItemController::class);
+Route::group(['as' => 'api.'], function () {
+    Route::apiResource('/items', ItemController::class)->except(['create', 'edit', 'update', 'destroy']);
+    Route::get('/statistics/items', [ItemController::class, 'statistics'])->name('items.statistics');
+});

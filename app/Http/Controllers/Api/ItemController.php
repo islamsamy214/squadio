@@ -13,54 +13,48 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $items = Item::paginate(config('pagination.default'));
+        return apiResponse('success', $items);
+    } // end of index
 
     /**
-     * Show the form for creating a new resource.
+     * Display the specified resource.
      */
-    public function create()
+    public function show(string $id)
     {
-        //
-    }
+        $item = Item::find($id);
+        if (!$item) return apiResponse('fail', null, 404, 'Item not found');
+        return apiResponse('success', $item);
+    } // end of show
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $rules = [
+            'name' => 'required|string|unique:items',
+            'price' => 'required|numeric',
+            'seller' => 'required|string',
+        ];
+        $validator = apiValidateRequest($request->all(), $rules);
+        if ($validator) return $validator;
+        $item = Item::create($request->all());
+        return apiResponse('success', $item, 201);
+    } // end of store
 
     /**
-     * Display the specified resource.
+     * return the monthly items total price and the average price.
      */
-    public function show(Item $item)
+    public function statistics()
     {
-        return response()->json(['item' => $item]);
-    }
+        $monthly_items_total_price = Item::whereMonth('created_at', date('m'))->sum('price');
+        $average_price = Item::avg('price');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Item $item)
-    {
-        //
-    }
+        $statistics = [
+            'monthly_items_total_price' => $monthly_items_total_price,
+            'average_price' => $average_price,
+        ];
+        return apiResponse('success', $statistics);
+    } // end of statistics
 }
