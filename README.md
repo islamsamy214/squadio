@@ -1,7 +1,7 @@
 ## Installation Steps
 
 1. Clone the repository.
-2. Create a MySQL database with your favorite name ex:"blogs".
+2. Create a MySQL database with your favorite name ex:"laravel".
 3. Run the following commands:
 
 ```
