@@ -13,7 +13,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::paginate(config('pagination.default'));
+        $items = Item::latest()->paginate(config('pagination.default'));
         return apiResponse('success', $items);
     } // end of index
 

@@ -16,7 +16,7 @@ use App\Http\Controllers\ItemController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route("items.index");
 })->name('home');
 
 Route::resource('/items', ItemController::class)->except(['show']);
