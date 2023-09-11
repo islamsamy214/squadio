@@ -45,3 +45,6 @@ For development, you can run:
 ```
 npm run dev
 ```
+# For Apis
+
+you will find a postman collection attached to the root dir
